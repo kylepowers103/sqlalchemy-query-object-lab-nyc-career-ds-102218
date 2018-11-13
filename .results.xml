@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?><testsuite errors="0" failures="0" name="pytest" skips="0" tests="8" time="0.232"><testcase classname="test.index_test.TestQueries" file="test/index_test.py" line="43" name="test_count_number_of_tech_companies" time="0.003975629806518555"><system-out>2018-11-05 14:59:12,420 INFO sqlalchemy.engine.base.Engine SELECT CAST(&apos;test plain returns&apos; AS VARCHAR(60)) AS anon_1
+2018-11-05 14:59:12,420 INFO sqlalchemy.engine.base.Engine ()
+2018-11-05 14:59:12,420 INFO sqlalchemy.engine.base.Engine SELECT CAST(&apos;test unicode returns&apos; AS VARCHAR(60)) AS anon_1
+2018-11-05 14:59:12,421 INFO sqlalchemy.engine.base.Engine ()
+2018-11-05 14:59:12,421 INFO sqlalchemy.engine.base.Engine BEGIN (implicit)
+2018-11-05 14:59:12,421 INFO sqlalchemy.engine.base.Engine SELECT avg(companies.enterprise_value) AS avg_1 
+FROM companies
+ LIMIT ? OFFSET ?
+2018-11-05 14:59:12,421 INFO sqlalchemy.engine.base.Engine (1, 0)
+</system-out></testcase><testcase classname="test.index_test.TestQueries" file="test/index_test.py" line="5" name="test_return_apple" time="0.002330303192138672"><system-out>2018-11-05 14:59:12,425 INFO sqlalchemy.engine.base.Engine SELECT companies.id AS companies_id, companies.company AS companies_company, companies.exchange AS companies_exchange, companies.symbol AS companies_symbol, companies.industry AS companies_industry, companies.date_added AS companies_date_added, companies.enterprise_value AS companies_enterprise_value 
+FROM companies 
+WHERE companies.company = ?
+ LIMIT ? OFFSET ?
+2018-11-05 14:59:12,425 INFO sqlalchemy.engine.base.Engine (&apos;Apple&apos;, 1, 0)
+</system-out></testcase><testcase classname="test.index_test.TestQueries" file="test/index_test.py" line="38" name="test_return_conglomerates_and_pharmaceutical_companies" time="0.0022521018981933594"><system-out>2018-11-05 14:59:12,428 INFO sqlalchemy.engine.base.Engine SELECT companies.id AS companies_id, companies.company AS companies_company, companies.exchange AS companies_exchange, companies.symbol AS companies_symbol, companies.industry AS companies_industry, companies.date_added AS companies_date_added, companies.enterprise_value AS companies_enterprise_value 
+FROM companies 
+WHERE companies.industry = ? OR companies.industry = ?
+2018-11-05 14:59:12,428 INFO sqlalchemy.engine.base.Engine (&apos;Conglomerate&apos;, &apos;Pharmaceuticals&apos;)
+</system-out></testcase><testcase classname="test.index_test.TestQueries" file="test/index_test.py" line="10" name="test_return_disneys_industry" time="0.0019919872283935547"><system-out>2018-11-05 14:59:12,431 INFO sqlalchemy.engine.base.Engine SELECT companies.id AS companies_id, companies.company AS companies_company, companies.exchange AS companies_exchange, companies.symbol AS companies_symbol, companies.industry AS companies_industry, companies.date_added AS companies_date_added, companies.enterprise_value AS companies_enterprise_value 
+FROM companies 
+WHERE companies.company = ?
+ LIMIT ? OFFSET ?
+2018-11-05 14:59:12,431 INFO sqlalchemy.engine.base.Engine (&apos;Walt Disney&apos;, 1, 0)
+</system-out></testcase><testcase classname="test.index_test.TestQueries" file="test/index_test.py" line="48" name="test_return_industry_and_its_total_EV" time="0.0019526481628417969"><system-out>2018-11-05 14:59:12,434 INFO sqlalchemy.engine.base.Engine SELECT companies.industry AS companies_industry, sum(companies.enterprise_value) AS sum_1 
+FROM companies GROUP BY companies.industry
+2018-11-05 14:59:12,434 INFO sqlalchemy.engine.base.Engine ()
+</system-out></testcase><testcase classname="test.index_test.TestQueries" file="test/index_test.py" line="15" name="test_return_list_of_company_objects_ordered_alphabetically_by_symbol" time="0.0021677017211914062"><system-out>2018-11-05 14:59:12,437 INFO sqlalchemy.engine.base.Engine SELECT companies.id AS companies_id, companies.company AS companies_company, companies.exchange AS companies_exchange, companies.symbol AS companies_symbol, companies.industry AS companies_industry, companies.date_added AS companies_date_added, companies.enterprise_value AS companies_enterprise_value 
+FROM companies ORDER BY companies.symbol
+2018-11-05 14:59:12,437 INFO sqlalchemy.engine.base.Engine ()
+</system-out></testcase><testcase classname="test.index_test.TestQueries" file="test/index_test.py" line="33" name="test_return_list_of_consumer_products_companies_with_EV_above_225" time="0.001870870590209961"><system-out>2018-11-05 14:59:12,440 INFO sqlalchemy.engine.base.Engine SELECT companies.id AS companies_id, companies.company AS companies_company, companies.exchange AS companies_exchange, companies.symbol AS companies_symbol, companies.industry AS companies_industry, companies.date_added AS companies_date_added, companies.enterprise_value AS companies_enterprise_value 
+FROM companies 
+WHERE companies.industry = ? AND companies.enterprise_value &gt; ?
+2018-11-05 14:59:12,440 INFO sqlalchemy.engine.base.Engine (&apos;Consumer products&apos;, 225)
+</system-out></testcase><testcase classname="test.index_test.TestQueries" file="test/index_test.py" line="27" name="test_return_list_of_dicts_of_tech_company_names_and_their_EVs_ordered_by_EV_descending" time="0.0022916793823242188"><system-out>2018-11-05 14:59:12,443 INFO sqlalchemy.engine.base.Engine SELECT companies.id AS companies_id, companies.company AS companies_company, companies.exchange AS companies_exchange, companies.symbol AS companies_symbol, companies.industry AS companies_industry, companies.date_added AS companies_date_added, companies.enterprise_value AS companies_enterprise_value 
+FROM companies 
+WHERE companies.industry = ? ORDER BY companies.enterprise_value DESC
+2018-11-05 14:59:12,443 INFO sqlalchemy.engine.base.Engine (&apos;Technology&apos;,)
+</system-out></testcase></testsuite>
